@@ -271,7 +271,7 @@ body.dark-mode {
 }
 
 h2 {
-    padding-bottom: 20px; /* Adjust the padding as needed */
+    padding-bottom: 10px; /* Adjust the padding as needed */
 }
 
 /* Animation styles */
@@ -305,11 +305,13 @@ h2 {
 }
 
 .section h2 {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 0px;
     color: #333;
 }
 .section p {
     color: #666;
+    padding-bottom: 10px;
 }
 
 /* Dark mode styles */
@@ -323,19 +325,13 @@ h2 {
     color: #bbb; /* Change to your desired text color in dark mode */
 }
 
-.about-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Align items vertically in the middle */
-    justify-content: space-between; /* Space between image and text */
+
+/* Add padding to the left of <li> items */
+ul {
+    padding-left: 15px; /* Adjust the value as needed */
 }
 
-.about-image {
-    flex: 1; /* Occupy 1 part of the available space */
-    margin-right: 20px; /* Adjust margin as needed */
-    max-height: 80%;
-}
-
-.about-text {
-    flex: 2; /* Occupy 2 parts of the available space */
+/* Set text color of <li> items same as <p> text */
+li {
+    color: inherit;
 }
