@@ -60,9 +60,12 @@
     <h2>Random</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia sapien ut velit condimentum, vitae bibendum quam aliquet. Quisque viverra lacus vitae eros viverra, sit amet placerat turpis ultrices. Vivamus hendrerit, lectus vitae interdum mattis, justo ipsum posuere odio, vel tincidunt lacus felis nec turpis. Duis quis velit vel ante tincidunt gravida non sit amet justo. Donec hendrerit sem vel consequat tempus. Mauris id est vel nunc feugiat tincidunt. Proin ultricies libero non dui accumsan, eu commodo ex tempus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
     <p>Etiam tristique semper orci. Nulla facilisi. Nunc vel lacus ac justo tincidunt faucibus sed in leo. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse vitae sapien et nunc viverra varius non nec enim. Ut suscipit, neque ac fermentum molestie, eros arcu consequat nunc, nec tincidunt mauris turpis eu turpis. Ut sodales massa vel nulla mattis, sit amet accumsan purus facilisis. Morbi quis nisi nec mi ultricies vehicula. Curabitur ultricies ultrices mauris, nec rutrum dui vehicula eget. Nam vehicula eget magna in dapibus.</p>
+    <div class="buttons-container">
+        <a href="random.html" target="_blank" rel="noopener noreferrer"><button class="btn btn-primary">Show more</button></a>
+    </div>
 </div>
 
-<section class="contact py-5 fade-in container" id="contact-form">
+<section id="contact" class="contact py-5 fade-in container" id="contact-form">
     <div class="container">
         <div class="col-lg-6 col-12">
             <div class="contact-form">
@@ -191,6 +194,12 @@
     }
 
     type();
+
+    // Function to scroll to specific section
+    function scrollToSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
 </script>
 
 </body>

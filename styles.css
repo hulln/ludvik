@@ -305,7 +305,7 @@ h2 {
 }
 
 .section h2 {
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 0px;
     color: #333;
 }
@@ -334,4 +334,5 @@ ul {
 /* Set text color of <li> items same as <p> text */
 li {
     color: inherit;
+    padding-top: 5px;
 }

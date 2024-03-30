@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N. Hüll</title>
+    <title>Digitalno jezikoslovje | N. Hüll</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <script>
+        function toggleAdditionalText() {
+            var additionalText = document.getElementById("additional-text");
+            var button = document.getElementById("show-more-btn");
+
+            if (additionalText.style.display === "none") {
+                additionalText.style.display = "block";
+                button.textContent = "Skrij";
+            } else {
+                additionalText.style.display = "none";
+                button.textContent = "Prikaži več";
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -16,12 +30,6 @@
         <a class="navbar-brand" href="index.html">
             <img src="images/favicon.png" alt="Logo" class="logo-sm">
         </a>
-        <div class="navbar-nav">
-            <button class="nav-button" onclick="scrollToSection('welcome')">Welcome</button>
-            <button class="nav-button" onclick="scrollToSection('about')">About</button>
-            <button class="nav-button" onclick="scrollToSection('random')">Random</button>
-            <button class="nav-button" onclick="scrollToSection('contact')">Contact</button>
-        </div>
         <div class="dark-mode-toggle" onclick="toggleDarkMode()">
             <i class="fas fa-moon" id="moon-icon" style="display: none;"></i>
             <i class="fas fa-sun" id="sun-icon" style="display: none;"></i>
@@ -32,11 +40,12 @@
 <!-- Vanta.js container -->
 <div id="vanta-container"></div>
 
-<div id="about" class="section container" style="padding-top: 100px;">
-    <h2>Uvod</h2>
+<div id="current-state" class="section container" style="padding-top: 100px;">
+    <h1 style="margin-bottom: 10px;">Študijski program Digitalno jezikoslovje</h1>
         <p>Besedilo temelji na vtisih, pridobljenih po prvem letu izvajanja programa Digitalno jezikoslovje, ki je dostopen na <a href="https://digiling.university/digitalno-jezikoslovje/">spletni strani programa</a>. Vtisi so bili zbrani v anketi dne 13. 11. 2023 in dopolnjeni s splošnimi relevantnimi informacijami. To besedilo je javno dostopno z namenom zagotavljanja transparentnosti in celostnega prikaza informacij.</p>
         <p>Za več informacij in morebitne direktne kontakte se lahko pridružite tudi <a href="https://discord.gg/qg53HW2FmP">neformalnemu Discord strežniku</a>, kjer je tudi povezava do formalnega strežnika.</p>
-    <h2>Kakovost in usklajenost predmetnika</h2>
+
+        <h2>Kakovost in usklajenost predmetnika</h2>
         <p>Sami predmeti znotraj predmetnika so zanimivi in načeloma primerni (čeprav je premalo izbirnosti), kar močno zmoti, je neustrezno povezovanje predmetov med seboj. Izvedba v praksi daje vtis, da predmetnik in organizacija nista bila dobro premišljena oz. funkcionirata predvsem na papirju, manj v realnosti, zlasti glede na dejstvo, da je program javnosti predstavljen kot »primeren za študente s kakršnokoli predhodno izobrazbo«. Večkrat nam je bilo eksplicitno zatrjeno, tako na informativnem dnevu kot na uvodnih sestankih, da naj bi se vsa manjkajoča znanja dalo nadoknaditi tekom prvega letnika študija in da so npr. nekomu s predhodno računalniško izobrazbo namenjeni bolj jezikoslovni, nekomu z jezikoslovno pa računalniški izbirni predmeti. A to v praksi ne drži, saj se kot izbirne predmete v prvem semestru ponuja veliko takih, ki vendarle zahtevajo kar nekaj predznanja (kar potrjujejo tudi izvajalci predmetov sami), v drugem pa se, čeprav bi se morda kdo želel odločiti zanje, ne izvajajo (oz. niso na izbiro med izbirnimi za 2. letnik).</p>
 		<p>Konkretno se to navezuje na predmete <a href="https://fri.uni-lj.si/sl/predmet/63214">Osnove umetne inteligence</a>, <a href="https://fri.uni-lj.si/sl/predmet/63741">Odločitveni sistemi</a>, <a href="https://fri.uni-lj.si/sl/predmet/63255">Spletno programiranje</a>, opisi katerih so, skupaj z zahtevami po predznanju, javno dostopni na spletni strani FRI. Tako predmeti v osnovi niso primerni za nekoga, ki bi se s področjem računalništva šele začel spoznavati, kar ni v skladu z našo predstavljeno idejo. Enako velja za obvezni predmet <a href="https://www.fri.uni-lj.si/sl/predmet/63555">Obdelava naravnega jezika</a>, ki je umeščen na <a href="https://fri.uni-lj.si/sl/studijski-program/racunalnistvo-informatika-1">drugostopenjski študij računalništva in informatike</a>. Statistika (<a href="http://psy.ff.uni-lj.si/Katedre/psimet/?m=10&s=3">Uvod v statistiko</a>), ki jo obiskujemo v prvem semestru (skupaj s programom Kognitivna znanost), še zdaleč ne zadostuje za resnično razumevanje vsebin pri omenjenem predmetu, saj se tam, po navedbah izvajalca, predpostavlja napredno znanje verjetnostne statistike (ki ga študenti RI VŠ dobijo v 2. semestru 1. letnika pri predmetu <a href="https://fri.uni-lj.si/sl/predmet/63710">Osnove verjetnosti in statistike</a>, študenti RI UNI pa v 1. semestru 2. letnika pri predmetu <a href="https://fri.uni-lj.si/sl/predmet/63213">Verjetnost in statistika</a>), linearne algebre, strojnega učenja ter programiranja (edino slednje do približno ustrezne mere pokrijemo pri predmetu <a href="https://www.fri.uni-lj.si/sl/predmet/63702">Programiranje 1</a>).</p>
 		<p>Opomba: Od vključno 2. generacije dalje (začenši z oktobrom 2023) se predmet Programiranje izvaja ločeno za FRI VŠ in DJ. Slednji obiskujejo predmet <a href="https://ucilnica.fri.uni-lj.si/course/view.php?id=802">Programiranje za neračunalnikarje</a>, na uradni spletni strani sicer naveden kot <a href="https://www.fri.uni-lj.si/sl/predmet/63702dj">Programiranje (DJ)</a>.</p>
@@ -57,10 +66,13 @@
         <p>Zaradi vseh prej navedenih aspektov skupno zadovoljstvo s programom v preteklem letu ocenjujem na 2/5. Vsekakor velja pohvaliti prilagodljivost in razumevanje nekaterih profesorjev oz. zaposlenih, ki se resnično trudijo, da bi nam karseda olajšali študij. Pozitivna je tudi vzpostavitev formalnega Discord strežnika za komunikacijo, saj tako znanje in informacije lažje krožijo, tako na relaciji zaposleni – študentje (in obratno) kot tudi med samimi študenti. A ravno dostopnost in transparentnost (po možnosti javno dostopnih) informacij je to, kar bi zagotovo pripomoglo k višji splošni oceni programa. Poleg tega študijski program ne daje vtisa neke zaokrožene celote, kjer bi se znanja smiselno dopolnjevala in nadgrajevala (kar ne pomeni, da pri posameznih predmetih pridobljena znanja niso koristna ali uporabna). Glede na že vzpostavljene dobre prakse obstoječih (skupnih) interdisciplinarnih programov se mi zdi škoda, da se tega ne bi karseda izkoristilo in uporabilo tudi v tem primeru povsem novega programa.</p>
 </div>
 
-<div id="about" class="section container">
+<div id="recommendations" class="section container">
         <h2>Dodatni predlogi, vtisi in sugestije</h2>
-        <p>V navezavi na vse predhodno podane odgovore spodaj na kratko dodajam še konkretne predloge za izboljšavo programa:</p>
-            <ul>
+        <p>V navezavi na vse predhodno podane odgovore spodaj na kratko dodajam še konkretne predloge za izboljšavo programa.</p>
+        <div class="buttons-container">
+            <button id="show-more-btn" class="btn btn-primary" onclick="toggleAdditionalText()">Prikaži več</button>
+        </div>
+            <ul id="additional-text" style="display: none; padding-top: 10px;">
                 <li>Reorganizacija predmetnika, obvezni predmeti. Združenje tehničnih predmetov s prve stopnje RI in DI v nekaj predmetov, prilagojenih za DJ. Ti predmeti bi se izvajali v 1. semestru 1. letnika. V ta semester bi bilo smiselno umestiti tudi predmeta Uvod v raziskovanje ter IKT in družba (kombinacija obeh predmetov, saj se pri slednjem primarno učimo znanstvenega pisanja, kar je sicer zelo uporabno znanje). Prav tako bi moral biti obvezen predmet Uvod v jezikoslovje, saj po mojih izkušnjah na vseh jezikoslovnih programih ne pridobimo teh znanj, vsaj ne dovolj specifičnih.</li>
                 <li>Reorganizacija predmetnika, notranji izbirni oz. predmetnospecifični predmeti. Redukcija količine prevajalskih predmetov oz. povečanje nabora predmetov s FDV ter FRI (z obeh stopenj).</li>
                 <li>Vključitev predmetov s področja informacijske varnosti. Na FRI imajo zanimive <a href="https://fri.uni-lj.si/sl/informacijska-varnost">interdisciplinarne predmete</a> s področja informacijske varnosti, pravnih vidikov obdelave podatkov itd., kar je pomembno pri kakršnemkoli delu s podatki, tudi jezikovnimi.</li>
@@ -73,7 +85,7 @@
 
 </div>
 
-<div id="about" class="section container">
+<div id="faq" class="section container">
     <h2>Ostalo/Vprašanja in odgovori</h2>
     <p>Ostalo, kar ni več del anketnih odgovorov in/ali je relevantno šele po oktobru 2023. Bo sproti dopolnjeno. Spodaj je zaenkrat zbranih nekaj odgovorov na vprašanja, ki se lahko porajajo študentom pred morebitnim vpisom.</p>
     
@@ -88,10 +100,6 @@
     </div>
 
     <!-- Add more questions and answers here -->
-
-    <div class="buttons-container">
-        <button id="show-more-btn" class="btn btn-primary">Prikaži več</button>
-    </div>
 </div>
 
 <section class="contact py-5 fade-in container" id="contact-form">
@@ -245,6 +253,21 @@
             answer.style.display = 'none';
         }
     }
+</script>
+
+<script>
+    const button = document.getElementById('show-more-btn');
+    const content = document.querySelector('.buttons-container + ul');
+
+    button.addEventListener('click', function() {
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            button.textContent = 'Skrij';
+        } else {
+            content.style.display = 'none';
+            button.textContent = 'Prikaži več';
+        }
+    });
 </script>
 
 </body>
