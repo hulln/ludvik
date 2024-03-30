@@ -54,6 +54,15 @@ body {
     color: #000; /* Change color of menu items */
 }
 
+/* Mobile-specific navbar styles */
+@media screen and (max-width: 768px) {
+    .navbar {
+        background-color: #343a40; /* Dark background color for mobile */
+        padding: 5px 0; /* Decreased padding for mobile */
+        /* Add other mobile-specific styles here */
+    }
+}
+
 .dark-mode-toggle {
     cursor: pointer;
     margin-left: 30px; /* Adjust as needed */
@@ -256,6 +265,29 @@ body.dark-mode {
 .btn-primary:hover,
 .btn-secondary:hover {
     background-color: #495057; /* Change color on hover */
+}
+
+.btn-plus {
+    background-color: transparent; /* Set the background color to transparent */
+    border: none; /* Remove the border */
+    color: rgb(0, 0, 0); /* Change the color of the plus sign */
+    font-size: 20px; /* Adjust the font size */
+    cursor: pointer; /* Add pointer cursor to indicate interactivity */
+    outline: none; /* Remove the default focus outline */
+    padding-left: 5px;
+}
+
+.btn-plus:hover {
+    color: #495057; /* Change the color of the plus sign on hover */
+}
+
+.dark-mode .btn-plus {
+    background-color: transparent; /* Change background color to black in dark mode */
+    color: #fff; /* Change text color to white in dark mode */
+}
+
+.dark-mode .btn-plus:hover {
+    color: #ccc; /* Change hover color to light grey in dark mode */
 }
 
 .about-content {

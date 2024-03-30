@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N. Hüll</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="src/assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="src/images/favicon.png">
 </head>
 <body>
 
+<!-- Navbar/Menu -->
 <nav class="navbar navbar-expand-sm navbar-light">
     <div class="container">
         <a class="navbar-brand" href="index.html">
-            <img src="images/favicon.png" alt="Logo" class="logo-sm">
+            <img src="src/images/favicon.png" alt="Logo" class="logo-sm">
         </a>
         <div class="navbar-nav">
             <button class="nav-button" onclick="scrollToSection('welcome')">Welcome</button>
@@ -39,23 +40,24 @@
             <p>This is my attempt to make a personal website. Hi!</p>
         </div>
         <div style="flex: 1; text-align: right;">
-            <img src="images/undraw_welcoming.svg" alt="Welcome Image" class="welcome-image" style="max-width: 60%; height: auto; margin-top: -150px;">
+            <img src="src/images/undraw_welcoming.svg" alt="Welcome Image" class="welcome-image" style="max-width: 60%; height: auto; margin-top: -150px;">
         </div>
     </div>
 </div>
 
-
+<!-- About Me-->
 <div id="about" class="section container fade-in">
     <h2>About</h2>
         <p>Welcome to my personal website! I'm passionate about [insert your interests or profession here]. Feel free to explore and learn more about me.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia sapien ut velit condimentum, vitae bibendum quam aliquet. Quisque viverra lacus vitae eros viverra, sit amet placerat turpis ultrices. Vivamus hendrerit, lectus vitae interdum mattis, justo ipsum posuere odio, vel tincidunt lacus felis nec turpis. Duis quis velit vel ante tincidunt gravida non sit amet justo. Donec hendrerit sem vel consequat tempus. Mauris id est vel nunc feugiat tincidunt. Proin ultricies libero non dui accumsan, eu commodo ex tempus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-        <p>Etiam tristique semper orci. Nulla facilisi. Nunc vel lacus ac justo tincidunt faucibus sed in leo. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse vitae sapien et nunc viverra varius non nec enim. Ut suscipit, neque ac fermentum molestie, eros arcu consequat nunc, nec tincidunt mauris turpis eu turpis. Ut sodales massa vel nulla mattis, sit amet accumsan purus facilisis. Morbi quis nisi nec mi ultricies vehicula. Curabitur ultricies ultrices mauris, nec rutrum dui vehicula eget. Nam vehicula eget magna in dapibus.</p>
+        <p>(There's currently nothing useful or interesting on my LinkedIn page, so no need to click on 'Learn more'.)</p>
     <div class="buttons-container">
-        <a href="https://www.linkedin.com/in/your-profile-url" target="_blank" rel="noopener noreferrer"><button class="btn btn-primary">Learn more</button></a>
-        <a href="path/to/your/CV.pdf" download><button class="btn btn-secondary">Download CV</button></a>
+        <a href="https://www.linkedin.com/in/hulln/" target="_blank" rel="noopener noreferrer"><button class="btn btn-primary">Learn more</button></a>
+        <a href="src/other/nh_cv_en.pdf" download><button class="btn btn-secondary">Download CV</button></a>
     </div>
 </div>
 
+<!-- Random -->
 <div id="random" class="section container fade-in">
     <h2>Random</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia sapien ut velit condimentum, vitae bibendum quam aliquet. Quisque viverra lacus vitae eros viverra, sit amet placerat turpis ultrices. Vivamus hendrerit, lectus vitae interdum mattis, justo ipsum posuere odio, vel tincidunt lacus felis nec turpis. Duis quis velit vel ante tincidunt gravida non sit amet justo. Donec hendrerit sem vel consequat tempus. Mauris id est vel nunc feugiat tincidunt. Proin ultricies libero non dui accumsan, eu commodo ex tempus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -65,6 +67,7 @@
     </div>
 </div>
 
+<!-- Contact -->
 <section id="contact" class="contact py-5 fade-in container" id="contact-form">
     <div class="container">
         <div class="col-lg-6 col-12">
@@ -94,6 +97,7 @@
     </div>
 </section>
 
+<!-- Footer -->
 <footer class="footer">
     <div class="container">
         <p class="copyright-text text-center">
@@ -102,6 +106,7 @@
     </div>
 </footer>
 
+<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 <script>
@@ -143,7 +148,7 @@
     });
 </script>
 
-<script src="script.js"></script>
+<script src="src/assets/script.js"></script>
 <script>
     var lastScrollTop = 0;
     window.addEventListener("scroll", function() {
@@ -195,11 +200,6 @@
 
     type();
 
-    // Function to scroll to specific section
-    function scrollToSection(sectionId) {
-        var section = document.getElementById(sectionId);
-        section.scrollIntoView({ behavior: 'smooth' });
-    }
 </script>
 
 </body>
