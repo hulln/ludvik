@@ -139,6 +139,42 @@ body {
     background-color: #495057;
 }
 
+/* Dark mode styles for contact form */
+.dark-mode .contact-form {
+    background-color: #333; /* Dark mode background color */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Dark mode box shadow */
+}
+
+.dark-mode .contact-form h2,
+.dark-mode .contact-form p,
+.dark-mode .contact-form input[type="submit"] {
+    color: #bbb; /* Dark mode text color */
+}
+
+/* Exclude specific input fields from dark mode color changes */
+.contact-form input[type="text"][name="name"],
+.contact-form input[type="email"][name="email"],
+.contact-form textarea[name="message"] {
+    color: #333; /* Keep the color unchanged in dark mode */
+    border-color: #ccc; /* Keep the border color unchanged in dark mode */
+}
+
+.dark-mode .contact-form input[type="text"][name="name"],
+.dark-mode .contact-form input[type="email"][name="email"],
+.dark-mode .contact-form textarea[name="message"] {
+    color: #333; /* Keep the color unchanged in dark mode */
+    border-color: #ccc; /* Keep the border color unchanged in dark mode */
+}
+
+.dark-mode .contact-form input[type="submit"] {
+    background-color: #6c757d; /* Dark mode background color for submit button */
+    color: #fff; /* Dark mode text color for submit button */
+}
+
+.dark-mode .contact-form input[type="submit"]:hover {
+    background-color: #495057; /* Dark mode hover background color for submit button */
+}
+
 /* Optional: Style the form for smaller screens */
 @media (max-width: 768px) {
     .contact-form input[type="text"],
@@ -222,3 +258,84 @@ body.dark-mode {
     background-color: #495057; /* Change color on hover */
 }
 
+.about-content {
+    display: flex;
+    flex-direction: row-reverse; /* Reverse the order of elements */
+    align-items: center; /* Vertically align items */
+}
+
+.about-photo {
+    width: 200px; /* Adjust size as needed */
+    margin-left: 0px; /* Add some spacing between the text and the photo */
+    border-radius: 4px;
+}
+
+h2 {
+    padding-bottom: 20px; /* Adjust the padding as needed */
+}
+
+/* Animation styles */
+#vanta-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the animation stays behind other content */
+}
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.fade-in.active {
+    opacity: 1;
+}
+
+.section {
+    padding: 50px;
+    text-align: justify;
+    border: 0px solid #ccc;
+    background-color: #f9f9f9;
+    margin-bottom: 50px;
+    font-family: 'Poppins', sans-serif; /* Add this line to apply Poppins font */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+.section h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+.section p {
+    color: #666;
+}
+
+/* Dark mode styles */
+.dark-mode .section {
+    background-color: #333; /* Change to your desired background color in dark mode */
+}
+.dark-mode .section h2 {
+    color: #f9f9f9; /* Change to your desired text color in dark mode */
+}
+.dark-mode .section p {
+    color: #bbb; /* Change to your desired text color in dark mode */
+}
+
+.about-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items vertically in the middle */
+    justify-content: space-between; /* Space between image and text */
+}
+
+.about-image {
+    flex: 1; /* Occupy 1 part of the available space */
+    margin-right: 20px; /* Adjust margin as needed */
+    max-height: 80%;
+}
+
+.about-text {
+    flex: 2; /* Occupy 2 parts of the available space */
+}
