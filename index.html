@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludvik Music Library</title>
+</head>
+<body>
+    <h1>Ludvik's Music Library</h1>
+
+    <div class="song">
+        <h2>Song 1</h2>
+        <audio controls>
+            <source src="music/song1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <p><strong>Lyrics:</strong></p>
+        <pre id="lyrics-song1">Loading lyrics...</pre>
+    </div>
+
+    <script>
+        async function loadLyrics() {
+            const response = await fetch("lyrics/song1.txt");
+            const text = await response.text();
+            document.getElementById("lyrics-song1").textContent = text;
+        }
+        loadLyrics();
+    </script>
+</body>
+</html>
