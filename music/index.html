@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #141e30, #243b55);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .song {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+        a {
+            color: lightblue;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Collection</h1>
+        
+        <div class="song">
+            <h2>Cel svet je pred mano</h2>
+            <audio controls>
+                <source src="music/Cel svet je pred mano.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <pre id="lyrics-cel-svet">Loading lyrics...</pre>
+        </div>
+        
+        <div class="song">
+            <h2>BLAŽ – BALKAN BOSS</h2>
+            <audio controls>
+                <source src="music/BLAŽ – BALKAN BOSS.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div class="song">
+            <h2>NIKI – QUEEN OF GREEN</h2>
+            <audio controls>
+                <source src="music/NIKI – QUEEN OF GREEN.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <a href="../index.html">⬅ Back to Home</a>
+    </div>
+    <script>
+        async function loadLyrics(songId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                const text = await response.text();
+                document.getElementById(songId).textContent = text;
+            } catch (error) {
+                document.getElementById(songId).textContent = "Lyrics not available.";
+            }
+        }
+        
+        loadLyrics("lyrics-cel-svet", "lyrics/cel_svet.txt");
+    </script>
+</body>
+</html>
