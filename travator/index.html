@@ -1,0 +1,494 @@
+<!DOCTYPE HTML>
+<html lang="sl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travator - Najdi svoje travnato ime</title>
+    <style>
+        :root {
+            --primary-color: #388e3c;
+            --secondary-color: #2e7d32;
+            --accent-color: #ffd700;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #1b5e20, #4caf50);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 1%, transparent 20%);
+            background-size: 30px 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 1rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            transform-style: preserve-3d;
+        }
+
+        .form-group {
+            margin: 1.5rem 0;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.02);
+        }
+
+        .loading {
+            display: none;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .result-container {
+            margin: 2rem 0;
+            min-height: 100px;
+        }
+
+        .result {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .floating-leaf {
+            position: fixed;
+            z-index: 1;
+            font-size: 2rem;
+            animation: float 8s infinite linear;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            animation: confetti-fall 3s linear;
+            pointer-events: none;
+        }
+
+        .history-panel {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .mascot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 4rem;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .emoji-reactions {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .emoji-bubble {
+            font-size: 2rem;
+            animation: emoji-float 3s infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #musicToggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        #musicToggle:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes emoji-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes smokeMove {
+            0% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-50px) scale(1.2); opacity: 0.3; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-bg"></div>
+    <div class="container">
+        <h1>Najdi svoje 420 ime! 🌿</h1>
+        <p>Vnesi svoje ime in odkrij svoje travnato ime!</p>
+        
+        <div class="form-group">
+            <input type="text" id="inputName" placeholder="Vnesi ime" required>
+        </div>
+        
+        <div class="form-group">
+            <select id="experienceLevel">
+                <option value="1">1 hit</option>
+                <option value="2">2 hita</option>
+                <option value="420">420 ali več</option>
+                <option value="infinite">O bože, tole bo dolga noč</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button id="go">Daj mi moje 420 ime</button>
+            <div id="loading" class="loading">Čillaj malo... sistem melje vutro...</div>
+        </div>
+
+        <div class="result-container">
+            <div class="emoji-reactions" id="reactions"></div>
+            <div id="res1" class="result"></div>
+            <h3 id="res2" class="result"></h3>
+        </div>
+
+        <div class="history-panel">
+            <h3>Zgodovina ⏳</h3>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <div class="mascot" onclick="doABarrelRoll()">🌿</div>
+    <div class="music-player">
+        <button id="musicToggle">🎵</button>
+        <audio id="backgroundMusic" loop>
+            <source src="travator/src/TistaTrava.mp3" type="audio/mpeg">
+            <source src="travator/src/HoplaKonopla.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script>
+        // Configuration
+        const NAME_PARTS = {
+            first: ["Zakajen", "Oblačen", "Zadimljen", "Travnati", "Vutra", "Oljasti", "Zeleni", "Chill", "Maglen", "Pohit"],
+            second: ["Blaž", "Zadetex", "Šitlist", "Kefir", "Džointman", "Kif", "Bobnar", "Jointovski", "Ošpice", "420"],
+            adjectives: ["Extreme", "Mega", "Ultra", "Super", "Hyper"]
+        };
+
+        const EMOJI_REACTIONS = {
+            good: ["🔥", "🌟", "🎉", "💚", "✨"],
+            bad: ["🤮", "💩", "👎", "😵", "🚫"]
+        };
+
+        const MAX_HISTORY = 10;
+        let history = JSON.parse(localStorage.getItem('420history')) || [];
+        const tracks = [
+            'travator/src/TistaTrava.mp3',
+            'travator/src/HoplaKonopla.mp3'
+        ];
+
+        // DOM Elements
+        const elements = {
+            goBtn: document.getElementById('go'),
+            loading: document.getElementById('loading'),
+            res1: document.getElementById('res1'),
+            res2: document.getElementById('res2'),
+            nameInput: document.getElementById('inputName'),
+            experienceSelect: document.getElementById('experienceLevel'),
+            reactions: document.getElementById('reactions'),
+            historyList: document.getElementById('historyList'),
+            music: document.getElementById('backgroundMusic'),
+            musicToggle: document.getElementById('musicToggle')
+        };
+
+        // Event Listeners
+        elements.goBtn.addEventListener('click', generateName);
+        elements.nameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') generateName();
+        });
+
+        // Music Controls
+        let isMusicPlaying = false;
+        elements.musicToggle.addEventListener('click', toggleMusic);
+        document.body.addEventListener('click', enableAudio, { once: true });
+
+        // Initialize
+        createFloatingLeaves();
+        document.addEventListener('mousemove', handleParallax);
+        document.addEventListener('DOMContentLoaded', initHistory);
+        elements.music.addEventListener('ended', playRandomTrack);
+
+        // Main Functions
+        function generateName() {
+            const name = elements.nameInput.value.trim();
+            const experience = elements.experienceSelect.value;
+            
+            toggleUIState(true);
+            createConfetti();
+
+            setTimeout(() => {
+                handleNameCheck(name, experience);
+                toggleUIState(false);
+                playSound(experience === 'infinite' ? 'bad' : 'good');
+            }, 2000);
+        }
+
+        function handleNameCheck(name, experience) {
+            const forbiddenNames = /niki|niko|niku/i;
+            
+            if (forbiddenNames.test(name)) {
+                showResult("Propad, Niki is beltincef, propat. Neč imena zate.", "");
+                addEmojiReactions('bad');
+            } else if (!name) {
+                showResult("Propad, tok zadet da niti imena več ne more vpisat. beeeet", "");
+                addEmojiReactions('bad');
+            } else {
+                const generatedName = generateRandomName(experience);
+                showResult(`Yo, vutra brat ${name}! Tvoje 420 ime je:`, generatedName);
+                updateHistory(generatedName);
+                addEmojiReactions(experience === 'infinite' ? 'bad' : 'good');
+                createConfetti();
+            }
+        }
+
+        // Helper Functions
+        function toggleUIState(loading) {
+            elements.goBtn.style.display = loading ? 'none' : 'block';
+            elements.loading.style.display = loading ? 'block' : 'none';
+        }
+
+        function generateRandomName(experience) {
+            let first = getRandomItem(NAME_PARTS.first);
+            let second = getRandomItem(NAME_PARTS.second);
+            
+            if (experience === '420' || experience === 'infinite') {
+                const adjective = getRandomItem(NAME_PARTS.adjectives);
+                return `${adjective} ${first} ${second}`;
+            }
+            return `${first} ${second}`;
+        }
+
+        function getRandomItem(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        function showResult(text1, text2) {
+            elements.res1.textContent = text1;
+            elements.res2.textContent = text2;
+        }
+
+        // History Functions
+        function initHistory() {
+            history.forEach(name => updateHistory(name, false));
+        }
+
+        function updateHistory(name, saveToStorage = true) {
+            const entry = document.createElement('div');
+            entry.className = 'history-item';
+            entry.textContent = name;
+            
+            entry.onclick = () => {
+                elements.res2.textContent = name;
+                elements.res1.textContent = "Prejšnja izbira:";
+                elements.res2.style.animation = 'pulse 1s';
+                setTimeout(() => elements.res2.style.animation = '', 1000);
+            };
+
+            elements.historyList.insertBefore(entry, elements.historyList.firstChild);
+            if (elements.historyList.children.length > MAX_HISTORY) {
+                elements.historyList.removeChild(elements.historyList.lastChild);
+            }
+
+            if (saveToStorage) {
+                history = [name, ...history].slice(0, MAX_HISTORY);
+                localStorage.setItem('420history', JSON.stringify(history));
+            }
+        }
+
+        // Music Functions
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                elements.music.pause();
+                elements.musicToggle.textContent = '🎵';
+            } else {
+                playRandomTrack();
+                elements.musicToggle.textContent = '🎶';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        function playRandomTrack() {
+            const randomTrack = tracks[Math.floor(Math.random() * tracks.length)];
+            elements.music.src = randomTrack;
+            elements.music.play().catch(() => {
+                alert('Za predvajanje glasbe najprej klikni kjer koli na strani');
+            });
+        }
+
+        function enableAudio() {
+            if (elements.music.paused) {
+                elements.music.play().then(() => {
+                    elements.music.pause();
+                    elements.music.currentTime = 0;
+                });
+            }
+        }
+
+        // Other Functions
+        function createFloatingLeaves() {
+            const leaves = ["🌿", "🍃", "🍀", "🌱", "🎍"];
+            setInterval(() => {
+                const leaf = document.createElement('div');
+                leaf.className = 'floating-leaf';
+                leaf.textContent = getRandomItem(leaves);
+                leaf.style.left = Math.random() * 100 + '%';
+                leaf.style.animationDuration = Math.random() * 3 + 5 + 's';
+                document.body.appendChild(leaf);
+                setTimeout(() => leaf.remove(), 8000);
+            }, 1000);
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 1 + 's';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        function addEmojiReactions(type = 'good') {
+            elements.reactions.innerHTML = EMOJI_REACTIONS[type]
+                .map(emoji => `<span class="emoji-bubble">${emoji}</span>`)
+                .join('');
+        }
+
+        function doABarrelRoll() {
+            document.body.style.transition = 'transform 1s';
+            document.body.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                document.body.style.transform = 'rotate(0deg)';
+            }, 1000);
+        }
+
+        function handleParallax(e) {
+            const x = (e.clientX / window.innerWidth - 0.5) * 10;
+            const y = (e.clientY / window.innerHeight - 0.5) * 10;
+            document.body.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg)`;
+        }
+
+        function playSound(type) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.type = 'sine';
+            gainNode.gain.value = 0.1;
+            
+            if (type === 'good') {
+                oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(880, audioContext.currentTime + 0.5);
+            } else {
+                oscillator.frequency.setValueAtTime(220, audioContext.currentTime);
+            }
+
+            oscillator.start();
+            setTimeout(() => oscillator.stop(), 500);
+        }
+    </script>
+</body>
+</html>
